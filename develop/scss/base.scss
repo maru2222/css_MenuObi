@@ -1,0 +1,134 @@
+@import "compass/reset";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transition";
+
+// =============================== control start
+
+// ---------------------------------- color size
+$bkColor:#ebebe7;
+$coColor:#f6f6f6;
+$baseColorA:#1a99ff;
+
+// ---------------------------------- font size
+$fontSizeM:13px;
+
+// ---------------------------------- margin bottom
+$marginBottomM:13px;
+
+// =============================== control End
+
+body{
+  background:$bkColor;
+  font-size:$fontSizeM;
+  font-family:"メイリオ", Meiryo,"ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN",sans-serif;
+  font-weight: 300;
+}
+
+.preload * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
+//=============================== mixin 
+
+@mixin sideDesgin{
+    background:$baseColorA;
+    @include box-shadow(rgba(61, 65, 71, 0.188824) -1px 4px 6px -1px);
+    
+    &:before{
+      width: 0;
+      height: 0;
+      content:" ";
+      border-style: solid;
+      border-width: 0 9px 9px 0;
+      border-color: transparent darken($baseColorA, 10%) transparent transparent;
+      position:absolute;
+      bottom:-9px;
+      left:0;
+    }//before
+}
+
+// =============================== css style
+
+.webArea{
+  background:$coColor;
+  background-size:contain;
+
+// =============================== webArea Start
+
+.contentsArea{
+  width:720px;
+  margin:0 auto;
+  overflow:hidden;
+}//contentsArea
+
+
+// =============================== sideArea Start
+
+.sideArea{
+  width:225px;
+  float:left;
+  
+  .sideContentsArea{
+    float:right;
+    width:215px;
+    
+    .sideMenu{
+      background: #ddd;
+      padding: 24px 0;
+      
+      nav{
+        ul{
+          li{
+            margin-bottom:$marginBottomM;
+            
+            a{
+              display:block;
+              color:#333;
+              width:224px;
+              margin:0 0 0 -9px;
+              padding:10px 0 10px 30px;
+              box-sizing:border-box;
+              position:relative;
+              text-decoration: none;
+              @include transition(all 0.2s linear 0s);
+              
+                &:before{
+                  @include transition(all 0.2s linear 0s);
+                  width: 0;
+                  height: 0;
+                  content:" ";
+                  border-style: solid;
+                  border-width: 0 9px 9px 0;
+                  border-color: transparent transparent transparent transparent;
+                  position:absolute;
+                  bottom:-9px;
+                  left:0;
+                }//before  
+              
+              &:hover{ 
+                @include sideDesgin;
+                color:#fff;
+              }//hover
+            }//a
+                        
+            &.active{
+              a{
+                @include sideDesgin;
+                color:#fff;
+              }//a
+            }//active 
+          }//li
+        }//ul
+      }//nav
+    }//sideMenu
+  }//sideContentsArea
+}//sideArea
+
+// =============================== webArea End
+
+}//webArea
+
